@@ -10,30 +10,32 @@
   </head>
   <body>
     <div id="unity-container">
-      <div id="unity-canvas-container">
+      <div id="unity-canvas-container" style="visibility:hidden">
         <canvas id="unity-canvas" style="width: 100%; height: 100%;"></canvas>
       </div>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
-        </div>
-      </div>
-      <div id="unity-footer">
-        <div id="unity-webgl-logo"></div>
-        <button id="entervr" value="Enter VR" disabled>VR</button>
-        <button id="enterar" value="Enter AR" disabled>AR</button>
-        <div id="unity-webxr-link">Using <a href="https://github.com/De-Panther/unity-webxr-export" target="_blank" title="WebXR Export">WebXR Export</a></div>
-        <div id="unity-build-title">ar apk test</div>
-      </div>
+	   <img src="./bg.png" width="960" height="600" margin-bottom="50%" position="absolute" top="50%" bottom="50%" style="margin-left:0">
+     <div id="unity-loading-bar" style="position:absolute; bottom:50px;">
+         <div id="unity-logo"></div>
+         <div id="unity-progress-bar-empty" style="background-color: cornflowerblue; outline: 3px solid">
+             <div id="unity-progress-bar-full" style="background-color:black;"></div>
+         </div>
+     </div>
+
+       <div id="unity-footer" style="padding-top: 310px">
+         <div id="unity-webgl-logo" style="visibility:hidden"></div>
+         <button id="entervr" value="Enter VR" disabled style="visibility:hidden"></button>
+         <button id="enterar" value="Enter AR" disabled style="width: 112px;">AR</button>
+         <div id="unity-webxr-link" style="visibility:hidden"><a href="https://github.com/De-Panther/unity-webxr-export" target="_blank" title="WebXR Export"></a></div>
+         <div id="unity-build-title" style=font-size : 28px">Click on the AR Button to enter AR mode</div>
+     </div>
     </div>
     <script>
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/AR-furniture.loader.js";
+      var loaderUrl = buildUrl + "/ARFurnitureTest.loader.js";
       var config = {
-        dataUrl: buildUrl + "/AR-furniture.data",
-        frameworkUrl: buildUrl + "/AR-furniture.framework.js",
-        codeUrl: buildUrl + "/AR-furniture.wasm",
+        dataUrl: buildUrl + "/ARFurnitureTest.data",
+        frameworkUrl: buildUrl + "/ARFurnitureTest.framework.js",
+        codeUrl: buildUrl + "/ARFurnitureTest.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "ar apk test",
