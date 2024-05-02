@@ -31,11 +31,11 @@
     </div>
     <script>
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/ARFurnitureTest.loader.js";
+      var loaderUrl = buildUrl + "/ARDemoBeta.loader.js";
       var config = {
-        dataUrl: buildUrl + "/ARFurnitureTest.data",
-        frameworkUrl: buildUrl + "/ARFurnitureTest.framework.js",
-        codeUrl: buildUrl + "/ARFurnitureTest.wasm",
+        dataUrl: buildUrl + "/ARDemoBeta.data",
+        frameworkUrl: buildUrl + "/ARDemoBeta.framework.js",
+        codeUrl: buildUrl + "/ARDemoBeta.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "ar apk test",
@@ -49,7 +49,7 @@
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var unityInstance = null;
-      
+
 
       canvasContainer.style.width = "960px";
       canvasContainer.style.height = "600px";
@@ -58,29 +58,32 @@
       var script = document.createElement("script");
       script.src = loaderUrl;
       script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-          progressBarFull.style.width = 100 * progress + "%";
-        }).then((instance) => {
-          unityInstance = instance;
-          loadingBar.style.display = "none";
-          if (fullscreenButton)
-          {
-            fullscreenButton.onclick = () => {
-              unityInstance.SetFullscreen(1);
-            };
-          }
-        }).catch((message) => {
-          alert(message);
-        });
+  createUnityInstance(canvas, config, (progress) => {
+    progressBarFull.style.width = 100 * progress + "%";
+  }).then((instance) => {
+    unityInstance = instance;
+    loadingBar.style.display = "none";
+    console.log("Unity instance fully created.");
+    if (fullscreenButton) {
+      fullscreenButton.onclick = () => {
+        unityInstance.SetFullscreen(1);
       };
+    }
+	console.log("AR about to start");
+	setTimeout(CheckReset, 5000);//5 sec delay
+	console.log("AR started");
+  }).catch((message) => {
+    alert(message);
+  });
+};
       document.body.appendChild(script);
 
       let enterARButton = document.getElementById('enterar');
       let enterVRButton = document.getElementById('entervr');
-	  
-	  document.addEventListener('DOMContentLoaded', function() {
-        unityInstance.Module.WebXR.toggleAR();
-      })
+
+	//  document.addEventListener('DOMContentLoaded', function() {
+    //    unityInstance.Module.WebXR.toggleAR();
+    //  })
 
       document.addEventListener('onARSupportedCheck', function (event) {
         enterARButton.disabled = !event.detail.supported;
@@ -97,7 +100,7 @@
       }, false);
 	   function CheckReset(){
           unityInstance.Module.WebXR.toggleAR();
-		
+
         }
     </script>
   </body>
